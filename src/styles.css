@@ -1,0 +1,102 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@theme inline {
+  --font-display: "Libre Baskerville", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-orange: var(--orange);
+  --color-orange-deep: var(--orange-deep);
+  --color-green: var(--green);
+  --color-green-deep: var(--green-deep);
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
+  --color-yellow: var(--yellow);
+  --color-yellow-deep: var(--yellow-deep);
+}
+
+:root {
+  --radius: 0.375rem;
+
+  /* Logo colors. The four hands, plus the warm gray of the wordmark. */
+  --orange: #e18349;
+  --green: #6b8d6f;
+  --blue: #65a9bc;
+  --yellow: #ebc14c;
+  /* Darker versions that hold white text */
+  --orange-deep: #b0551d;
+  --green-deep: #3f5c46;
+  --blue-deep: #2c6a7d;
+  --yellow-deep: #7d5f0c;
+
+  --ink: #2e2b28;
+  --paper: #f7f4ee;
+
+  --background: #fcfbf8;
+  --foreground: #2e2b28;
+  --card: #ffffff;
+  --card-foreground: #2e2b28;
+  --primary: #3f5c46;
+  --primary-foreground: #fcfbf8;
+  --secondary: #efeae1;
+  --secondary-foreground: #2e2b28;
+  --muted: #f2eee7;
+  --muted-foreground: #66615a;
+  --accent: #efeae1;
+  --accent-foreground: #2e2b28;
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+  --border: #e3ddd2;
+  --input: #d9d2c5;
+  --ring: #3f5c46;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
