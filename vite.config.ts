@@ -17,7 +17,8 @@ export default defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: true,
-        filter: ({ path }) => !path.includes("#"),
+        // Skip hash links and the trailing slash copy of a page ("/events/" next to "/events")
+        filter: ({ path }) => !path.includes("#") && (path === "/" || !path.endsWith("/")),
       },
     }),
     viteReact(),

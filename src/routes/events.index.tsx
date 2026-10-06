@@ -1,10 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
-import { Button } from "@/components/ui/button";
 import { events, mailto } from "@/lib/site";
 
-export const Route = createFileRoute("/events")({
+export const Route = createFileRoute("/events/")({
   head: () => ({
     meta: [
       { title: "Events | Debie Baranchulk Foundation" },
@@ -56,28 +55,43 @@ function Upcoming() {
         ) : (
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {events.map((e) => (
-              <article key={e.slug} className="rounded-md border border-border bg-card p-7">
-                <h3 className="font-display text-2xl">{e.title}</h3>
-                <div className="mt-4 space-y-1.5 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4" />
-                    {e.date}
-                    {e.time && `, ${e.time}`}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {e.location}
-                  </div>
-                </div>
-                <p className="mt-4 leading-relaxed text-muted-foreground">{e.summary}</p>
-                {e.link && (
-                  <Button asChild className="mt-6">
-                    <a href={e.link}>
-                      Event details <ArrowRight />
-                    </a>
-                  </Button>
+              <Link
+                key={e.slug}
+                to="/events/$slug"
+                params={{ slug: e.slug }}
+                className="group flex flex-col overflow-hidden rounded-md border border-border bg-card transition-shadow hover:shadow-md"
+              >
+                {e.image ? (
+                  <img
+                    src={e.image.src}
+                    alt={e.image.alt}
+                    width={e.image.width}
+                    height={e.image.height}
+                    className="aspect-[16/9] w-full object-cover"
+                  />
+                ) : (
+                  <div className="h-1.5 bg-blue" />
                 )}
-              </article>
+                <div className="flex flex-1 flex-col p-7">
+                  <p className="text-sm font-medium text-blue-deep">{e.kind}</p>
+                  <h3 className="mt-2 font-display text-2xl">{e.title}</h3>
+                  <div className="mt-4 space-y-1.5 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <CalendarDays className="h-4 w-4 shrink-0" />
+                      {e.date}
+                      {e.time && `, ${e.time}`}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 shrink-0" />
+                      {e.venue}
+                    </div>
+                  </div>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">{e.summary}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 font-medium text-blue-deep group-hover:underline">
+                    Details and tickets <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         )}
@@ -112,7 +126,7 @@ const options = [
 
 function GetInvolved() {
   return (
-    <section className="bg-paper py-20 md:py-24">
+    <section id="get-involved" className="scroll-mt-20 bg-paper py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="font-display text-3xl md:text-4xl">Get involved</h2>
         <div className="mt-10 grid gap-2 md:grid-cols-3">

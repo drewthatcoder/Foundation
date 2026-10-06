@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ZeffyForm } from "@/components/ZeffyForm";
+import { events, zeffyForms } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -10,8 +12,10 @@ function Home() {
   return (
     <>
       <Hero />
+      <NextEvent />
       <Story />
       <Explore />
+      <Support />
       <Partner />
     </>
   );
@@ -77,6 +81,36 @@ const roles = [
   { org: "Francis House Center", role: "Board member and organizer of Feast for the Streets" },
   { org: "Fremont Presbyterian Church", role: "Deacon, Elder, and mentor" },
 ];
+
+function NextEvent() {
+  const event = events[0];
+  if (!event) return null;
+  return (
+    <section className="bg-blue-deep text-white">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p className="text-sm font-medium text-white/70">Coming up</p>
+          <h2 className="mt-1 font-display text-2xl md:text-3xl">{event.title}</h2>
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1.5 text-white/80">
+            <span className="flex items-center gap-2">
+              <CalendarDays className="h-4 w-4 shrink-0 text-yellow" />
+              {event.date}
+            </span>
+            <span className="flex items-center gap-2">
+              <MapPin className="h-4 w-4 shrink-0 text-yellow" />
+              {event.venue}
+            </span>
+          </div>
+        </div>
+        <Button asChild size="lg" className="shrink-0 bg-white text-ink hover:bg-white/90">
+          <Link to="/events/$slug" params={{ slug: event.slug }}>
+            Details and tickets <ArrowRight />
+          </Link>
+        </Button>
+      </div>
+    </section>
+  );
+}
 
 function Story() {
   return (
@@ -178,6 +212,30 @@ function Explore() {
               <ArrowRight className="mt-auto h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Support() {
+  return (
+    <section id="donate" className="scroll-mt-20 bg-green-deep py-20 text-white md:py-24">
+      <div className="mx-auto grid max-w-6xl items-start gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:gap-16">
+        <div className="md:sticky md:top-28">
+          <h2 className="font-display text-3xl leading-tight md:text-4xl">
+            Support Debie's legacy
+          </h2>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/80">
+            <p>
+              Every gift goes toward the causes Debie gave her life to: affordable housing,
+              homelessness response, and life skills education.
+            </p>
+            <p>Donations are processed securely through Zeffy.</p>
+          </div>
+        </div>
+        <div>
+          <ZeffyForm form={zeffyForms.donation} title="Donation form powered by Zeffy" />
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DonateButton } from "@/components/Donate";
 
 export const navLinks = [
   { to: "/about", label: "About" },
@@ -52,22 +53,28 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <Button asChild>
-            <Link to="/contact" hash="partner">
-              Partner with us
-            </Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="outline" className="hidden bg-transparent lg:inline-flex">
+              <Link to="/contact" hash="partner">
+                Partner with us
+              </Link>
+            </Button>
+            <DonateButton />
+          </div>
         </nav>
 
-        <button
-          type="button"
-          className="grid h-10 w-10 place-items-center rounded-md text-foreground hover:bg-secondary md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <DonateButton size="sm" />
+          <button
+            type="button"
+            className="grid h-10 w-10 place-items-center rounded-md text-foreground hover:bg-secondary"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
