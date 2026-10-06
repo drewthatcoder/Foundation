@@ -81,7 +81,24 @@ const roles = [
 function Story() {
   return (
     <section className="py-20 md:py-24">
-      <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16 px-6">
+      <div className="mx-auto grid max-w-6xl items-start gap-12 px-6 md:grid-cols-[5fr_7fr] md:gap-16">
+        <figure className="mx-auto w-full max-w-sm md:max-w-none">
+          <div className="relative">
+            <div
+              aria-hidden
+              className="absolute -bottom-3 -right-3 h-full w-full rounded-md bg-orange"
+            />
+            <img
+              src="/debie.jpg"
+              alt="Portrait of Debie Baranchulk"
+              width={708}
+              height={823}
+              className="relative w-full rounded-md"
+            />
+          </div>
+          <figcaption className="mt-6 text-sm text-muted-foreground">Debie Baranchulk</figcaption>
+        </figure>
+
         <div>
           <h2 className="font-display text-3xl leading-tight md:text-4xl">Who Debie was</h2>
           <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -102,16 +119,16 @@ function Story() {
           >
             More about Debie and the foundation <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
 
-        <ul className="border-t border-border">
-          {roles.map((r) => (
-            <li key={r.org} className="border-b border-border py-5">
-              <div className="font-display text-lg">{r.org}</div>
-              <div className="mt-1 text-sm text-muted-foreground">{r.role}</div>
-            </li>
-          ))}
-        </ul>
+          <ul className="mt-10 grid gap-x-8 border-t border-border sm:grid-cols-2">
+            {roles.map((r) => (
+              <li key={r.org} className="border-b border-border py-5">
+                <div className="font-display text-lg leading-snug">{r.org}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{r.role}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

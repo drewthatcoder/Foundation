@@ -164,12 +164,19 @@ function Supported() {
           This list will grow as the foundation does.
         </p>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          <article className="overflow-hidden rounded-md border border-border bg-card">
-            <div className="h-1.5 bg-orange" />
-            <div className="p-7">
-              <h3 className="font-display text-2xl">Francis House Center</h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
+        <div className="mt-10 space-y-4">
+          <article className="grid overflow-hidden rounded-md border border-border bg-card md:grid-cols-[1.15fr_1fr]">
+            <img
+              src="/francis-house.jpg"
+              alt="Francis House Center table at a fundraiser"
+              width={1024}
+              height={768}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <div className="flex flex-col justify-center border-t-4 border-orange p-7 md:border-l-4 md:border-t-0 md:p-10">
+              <h3 className="font-display text-2xl md:text-3xl">Francis House Center</h3>
+              <p className="mt-4 leading-relaxed text-muted-foreground md:text-lg">
                 Homeless services in Sacramento. Debie served on its board and organized its annual
                 Feast for the Streets fundraiser. The foundation has given direct support to its
                 work.
@@ -177,15 +184,17 @@ function Supported() {
             </div>
           </article>
 
-          <div className="flex flex-col justify-center rounded-md border border-dashed border-input p-7">
-            <h3 className="font-display text-xl">Know an organization we should meet?</h3>
-            <p className="mt-2 leading-relaxed text-muted-foreground">
-              We are always looking for groups working in housing, homelessness, and education.
-            </p>
+          <div className="flex flex-col items-start justify-between gap-4 rounded-md border border-dashed border-input p-7 md:flex-row md:items-center">
+            <div>
+              <h3 className="font-display text-xl">Know an organization we should meet?</h3>
+              <p className="mt-2 leading-relaxed text-muted-foreground">
+                We are always looking for groups working in housing, homelessness, and education.
+              </p>
+            </div>
             <Link
               to="/contact"
               hash="partner"
-              className="mt-4 inline-flex items-center gap-2 font-medium text-green-deep hover:underline"
+              className="inline-flex shrink-0 items-center gap-2 font-medium text-green-deep hover:underline"
             >
               Get in touch <ArrowRight className="h-4 w-4" />
             </Link>

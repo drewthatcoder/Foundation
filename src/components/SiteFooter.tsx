@@ -73,8 +73,21 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/45">
-          &copy; {new Date().getFullYear()} {site.name}
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 text-xs text-white/45 sm:flex-row sm:justify-between">
+          <span>
+            &copy; {new Date().getFullYear()} {site.name}
+          </span>
+          <span>
+            Designed by{" "}
+            <a
+              href="https://www.cityoftreestech.com"
+              target="_blank"
+              rel="noopener"
+              className="text-white/70 underline-offset-4 hover:text-white hover:underline"
+            >
+              City of Trees Tech
+            </a>
+          </span>
         </div>
       </div>
     </footer>
