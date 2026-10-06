@@ -59,6 +59,7 @@ export const events: FoundationEvent[] = [
       "Proceeds support organizations that serve veterans and people experiencing homelessness, the kind of work Debie championed throughout her life.",
     ],
     lineup: ["Bad Cat"],
+    ticketForm: "ticketing/veterans-day-benefit-concert",
     partners: [
       {
         name: "Volunteers of America Northern California & Northern Nevada",
