@@ -100,19 +100,22 @@ function Upcoming() {
   );
 }
 
+const linkClass =
+  "mt-8 inline-flex items-center gap-2 self-start border-b border-white/40 pb-0.5 font-medium hover:border-white";
+
 const options = [
   {
     title: "Volunteer",
-    body: "Help set up, run a table, or greet guests at an event. Tell us a little about yourself and when you are available.",
+    body: "Help set up, run a table, or greet guests at an event. Sign up for an open spot.",
     action: "Sign up to volunteer",
-    subject: "Volunteer sign up",
+    to: "/volunteer",
     className: "bg-green-deep",
   },
   {
     title: "Sponsor",
-    body: "Businesses and organizations can sponsor an event or a program. We will follow up with sponsorship options.",
-    action: "Ask about sponsorship",
-    subject: "Sponsorship inquiry",
+    body: "Businesses and organizations can sponsor an event. See the current sponsorship opportunities.",
+    action: "Become a sponsor",
+    to: "/sponsors",
     className: "bg-orange-deep",
   },
   {
@@ -122,7 +125,7 @@ const options = [
     subject: "Co-hosting an event",
     className: "bg-blue-deep",
   },
-];
+] as const;
 
 function GetInvolved() {
   return (
@@ -134,12 +137,15 @@ function GetInvolved() {
             <div key={o.title} className={`flex flex-col rounded-md p-7 text-white ${o.className}`}>
               <h3 className="font-display text-2xl">{o.title}</h3>
               <p className="mt-3 leading-relaxed text-white/80">{o.body}</p>
-              <a
-                href={mailto(o.subject)}
-                className="mt-8 inline-flex items-center gap-2 self-start border-b border-white/40 pb-0.5 font-medium hover:border-white"
-              >
-                {o.action} <ArrowRight className="h-4 w-4" />
-              </a>
+              {"to" in o ? (
+                <Link to={o.to} className={linkClass}>
+                  {o.action} <ArrowRight className="h-4 w-4" />
+                </Link>
+              ) : (
+                <a href={mailto(o.subject)} className={linkClass}>
+                  {o.action} <ArrowRight className="h-4 w-4" />
+                </a>
+              )}
             </div>
           ))}
         </div>

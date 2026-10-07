@@ -197,12 +197,12 @@ function Partners({ event }: { event: FoundationEvent }) {
                 Put your business's name on the night and help fund the cause.
               </p>
             </div>
-            <a
-              href={mailto(`Sponsoring the ${event.title}`)}
+            <Link
+              to="/sponsors"
               className="inline-flex items-center gap-2 text-sm font-medium text-blue-deep hover:underline"
             >
-              Ask about sponsorship <ArrowRight className="h-4 w-4" />
-            </a>
+              See sponsorship options <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </div>
@@ -259,8 +259,8 @@ function Help() {
             Volunteers help set up, run tables, and welcome guests on the night.
           </p>
           <Button asChild size="lg" className="mt-8 bg-white text-ink hover:bg-white/90">
-            <Link to="/events" hash="get-involved">
-              Volunteer with us <ArrowRight />
+            <Link to="/volunteer">
+              Sign up to volunteer <ArrowRight />
             </Link>
           </Button>
         </div>

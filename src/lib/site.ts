@@ -3,16 +3,24 @@
 export const site = {
   name: "Debie Baranchulk Foundation",
   email: "brian@debiebfoundation.org",
-  phone: "916-616-9119",
+  sponsorEmail: "sponsors@debiebfoundation.org",
+  phone: "916-245-8671",
   contactName: "Brian Baranchulk",
   contactTitle: "Founder and President",
-  mailingAddress: [] as string[],
-  social: [{ label: "Facebook", href: "https://www.facebook.com/debiebfoundation" }],
+  mailingAddress: ["10265 Rockingham Dr", "Suite #100-4296", "Sacramento, CA 95827"],
+  social: [
+    { label: "Facebook", href: "https://www.facebook.com/debiebfoundation" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/debiebfoundation/" },
+  ],
 };
 
-// Zeffy form paths, as they appear after "zeffy.com/embed/" in Zeffy's share code.
+// Zeffy form paths: the data-form-url value from Zeffy's embed code, i.e. everything
+// after "zeffy.com". Some start with a language prefix like /en-US.
 export const zeffyForms = {
-  donation: "donation-form/support-a-legacy-of-discipleship-service-compassion-and-love",
+  donation: "/embed/donation-form/support-a-legacy-of-discipleship-service-compassion-and-love",
+  sponsorship: "/embed/ticketing/veterans-day-benefit-concert-sponsorships",
+  volunteer:
+    "/en-US/embed/newsletter-form/volunteer-at-the-veterans-day-benefit-concert-on-november--11",
 };
 
 export const phoneHref = `tel:+1${site.phone.replace(/\D/g, "")}`;
@@ -59,7 +67,7 @@ export const events: FoundationEvent[] = [
       "Proceeds support organizations that serve veterans and people experiencing homelessness, the kind of work Debie championed throughout her life.",
     ],
     lineup: ["Bad Cat"],
-    ticketForm: "ticketing/veterans-day-benefit-concert",
+    ticketForm: "/embed/ticketing/veterans-day-benefit-concert",
     partners: [
       {
         name: "Volunteers of America Northern California & Northern Nevada",

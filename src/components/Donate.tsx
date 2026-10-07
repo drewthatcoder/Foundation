@@ -14,7 +14,7 @@ import { zeffyForms } from "@/lib/site";
 // but works with client side navigation: that script only binds buttons that exist when the
 // first page loads. The message ids match the ones Zeffy's form listens for and sends.
 const MODAL_MESSAGE_ID = "zeffy-iframe";
-const MODAL_URL = `https://www.zeffy.com/embed/${zeffyForms.donation}?modal=true`;
+const MODAL_URL = `https://www.zeffy.com${zeffyForms.donation}?modal=true`;
 const ZEFFY_ORIGINS = ["https://www.zeffy.com", "https://app.simplyk.io"];
 
 const DonateContext = createContext<() => void>(() => {});

@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as SponsorsRouteImport } from './routes/sponsors'
+import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as EventsIndexRouteImport } from './routes/events.index'
 import { Route as EventsSlugRouteImport } from './routes/events.$slug'
 
@@ -36,6 +38,16 @@ const ProgramsRoute = ProgramsRouteImport.update({
   path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SponsorsRoute = SponsorsRouteImport.update({
+  id: '/sponsors',
+  path: '/sponsors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VolunteerRoute = VolunteerRouteImport.update({
+  id: '/volunteer',
+  path: '/volunteer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsIndexRoute = EventsIndexRouteImport.update({
   id: '/events/',
   path: '/events/',
@@ -52,6 +64,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/programs': typeof ProgramsRoute
+  '/sponsors': typeof SponsorsRoute
+  '/volunteer': typeof VolunteerRoute
   '/events/$slug': typeof EventsSlugRoute
   '/events/': typeof EventsIndexRoute
 }
@@ -60,6 +74,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/programs': typeof ProgramsRoute
+  '/sponsors': typeof SponsorsRoute
+  '/volunteer': typeof VolunteerRoute
   '/events/$slug': typeof EventsSlugRoute
   '/events': typeof EventsIndexRoute
 }
@@ -69,21 +85,40 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/programs': typeof ProgramsRoute
+  '/sponsors': typeof SponsorsRoute
+  '/volunteer': typeof VolunteerRoute
   '/events/$slug': typeof EventsSlugRoute
   '/events/': typeof EventsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/contact' | '/programs' | '/events/$slug' | '/events/'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/programs'
+    | '/sponsors'
+    | '/volunteer'
+    | '/events/$slug'
+    | '/events/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/programs' | '/events/$slug' | '/events'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/programs'
+    | '/sponsors'
+    | '/volunteer'
+    | '/events/$slug'
+    | '/events'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
     | '/programs'
+    | '/sponsors'
+    | '/volunteer'
     | '/events/$slug'
     | '/events/'
   fileRoutesById: FileRoutesById
@@ -93,6 +128,8 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   ProgramsRoute: typeof ProgramsRoute
+  SponsorsRoute: typeof SponsorsRoute
+  VolunteerRoute: typeof VolunteerRoute
   EventsSlugRoute: typeof EventsSlugRoute
   EventsIndexRoute: typeof EventsIndexRoute
 }
@@ -127,6 +164,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sponsors': {
+      id: '/sponsors'
+      path: '/sponsors'
+      fullPath: '/sponsors'
+      preLoaderRoute: typeof SponsorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/volunteer': {
+      id: '/volunteer'
+      path: '/volunteer'
+      fullPath: '/volunteer'
+      preLoaderRoute: typeof VolunteerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/': {
       id: '/events/'
       path: '/events'
@@ -149,6 +200,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   ProgramsRoute: ProgramsRoute,
+  SponsorsRoute: SponsorsRoute,
+  VolunteerRoute: VolunteerRoute,
   EventsSlugRoute: EventsSlugRoute,
   EventsIndexRoute: EventsIndexRoute,
 }

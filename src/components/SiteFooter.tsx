@@ -30,7 +30,11 @@ export function SiteFooter() {
                 Home
               </Link>
             </li>
-            {navLinks.map((l) => (
+            {[
+              ...navLinks,
+              { to: "/volunteer", label: "Volunteer" } as const,
+              { to: "/sponsors", label: "Sponsor" } as const,
+            ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="text-white/80 hover:text-white">
                   {l.label}

@@ -54,12 +54,12 @@ export function ZeffyForm({ form, title }: { form: string; title: string }) {
     return (
       <iframe
         title={title}
-        src={`https://www.zeffy.com/embed/${form}`}
+        src={`https://www.zeffy.com${form}`}
         allow="payment"
         className="block h-[600px] w-full border-0"
       />
     );
   }
 
-  return <div key={form} data-zeffy-embed data-form-url={`/embed/${form}`} />;
+  return <div key={form} data-zeffy-embed data-form-url={form} />;
 }
