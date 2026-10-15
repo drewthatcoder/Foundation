@@ -17,8 +17,12 @@ export default defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: true,
-        // Skip hash links and the trailing slash copy of a page ("/events/" next to "/events")
-        filter: ({ path }) => !path.includes("#") && (path === "/" || !path.endsWith("/")),
+        // Skip hash links, the trailing slash copy of a page ("/events/" next to "/events"), and
+        // links to files like PDFs, which get copied from /public as is.
+        filter: ({ path }) =>
+          !path.includes("#") &&
+          (path === "/" || !path.endsWith("/")) &&
+          !/\.[a-z0-9]+$/i.test(path),
       },
     }),
     viteReact(),

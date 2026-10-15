@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
+import { ArrowRight, CalendarDays, Download, FileText, MapPin } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { ZeffyForm } from "@/components/ZeffyForm";
 import { getEvent, site, zeffyForms } from "@/lib/site";
@@ -18,10 +18,23 @@ export const Route = createFileRoute("/sponsors")({
   component: Sponsors,
 });
 
+// Brian's sponsorship packet. Kept in /public/files so the link matches the address on his
+// current site and keeps working after the domain moves over.
+const PACKET_URL = "/files/Sponsorship-Veterans-Day.pdf";
+
+// From page 2 of the sponsorship packet
+const levels = [
+  { name: "Bronze", amount: "$500", vip: 2 },
+  { name: "Silver", amount: "$1,000", vip: 4 },
+  { name: "Gold", amount: "$2,500", vip: 6 },
+  { name: "Diamond", amount: "$3,500", vip: 8 },
+  { name: "Platinum", amount: "$5,000", vip: 10 },
+];
+
 const steps = [
-  "Enter the amount you would like to sponsor in the category you want.",
-  "Click the plus sign, then continue.",
-  "If you are sponsoring as a business, check the corporate sponsorship box.",
+  "Look over the sponsorship packet to compare levels and benefits.",
+  "Choose your level in the form, click the plus sign, then continue.",
+  "Sponsoring as a business? Check the corporate sponsorship box before you finish.",
 ];
 
 function Sponsors() {
@@ -62,6 +75,53 @@ function Sponsors() {
                 </span>
               </Link>
             )}
+
+            <h2 className="mt-10 font-display text-2xl">Sponsor levels</h2>
+            <ul className="mt-4 border-t border-border">
+              {levels.map((l) => (
+                <li
+                  key={l.name}
+                  className="flex items-baseline justify-between gap-4 border-b border-border py-3"
+                >
+                  <span className="font-display text-lg">{l.name}</span>
+                  <span className="text-right text-muted-foreground">
+                    <span className="font-medium text-foreground">{l.amount}</span>, {l.vip} VIP
+                    tickets
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Community members can also sponsor at the $250 Steel level, available on the{" "}
+              {event ? (
+                <Link
+                  to="/events/$slug"
+                  params={{ slug: event.slug }}
+                  hash="tickets"
+                  className="text-foreground underline underline-offset-4"
+                >
+                  ticket form
+                </Link>
+              ) : (
+                "ticket form"
+              )}
+              .
+            </p>
+            <a
+              href={PACKET_URL}
+              target="_blank"
+              rel="noopener"
+              className="mt-6 flex items-center gap-3 rounded-md border border-border p-4 transition-colors hover:bg-paper"
+            >
+              <FileText className="h-6 w-6 shrink-0 text-orange-deep" />
+              <span>
+                <span className="block font-medium">Sponsorship packet</span>
+                <span className="text-sm text-muted-foreground">
+                  Full benefits for every level (PDF)
+                </span>
+              </span>
+              <Download className="ml-auto h-4 w-4 shrink-0 text-muted-foreground" />
+            </a>
 
             <h2 className="mt-10 font-display text-2xl">How it works</h2>
             <ol className="mt-5 space-y-4">
