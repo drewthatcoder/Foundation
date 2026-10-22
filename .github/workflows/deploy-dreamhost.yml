@@ -1,0 +1,36 @@
+name: Deploy to DreamHost
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-dreamhost
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Rsync static build to DreamHost
+        env:
+          SSHPASS: ${{ secrets.DREAMHOST_PASSWORD }}
+          DREAMHOST_HOST: ${{ secrets.DREAMHOST_HOST }}
+          DREAMHOST_USER: ${{ secrets.DREAMHOST_USER }}
+          DREAMHOST_PATH: ${{ secrets.DREAMHOST_PATH }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass rsync
+          sshpass -e rsync -avz --delete --exclude '.well-known' \
+            -e "ssh -o StrictHostKeyChecking=accept-new -o PubkeyAuthentication=no" \
+            dist/client/ "$DREAMHOST_USER@$DREAMHOST_HOST:$DREAMHOST_PATH/"
