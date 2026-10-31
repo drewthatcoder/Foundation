@@ -3,6 +3,7 @@ name: Deploy to DreamHost
 on:
   push:
     branches: [main]
+  # Manual re-run from the Actions tab, in addition to every push to main.
   workflow_dispatch:
 
 concurrency:
