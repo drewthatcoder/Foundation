@@ -58,12 +58,12 @@ export const events: FoundationEvent[] = [
     kind: "Benefit concert",
     date: "Wednesday, November 11, 2026",
     time: "4:00 to 8:00 PM",
-    venue: "Village Green Amphitheater",
-    address: "3141 Bridgeway Dr, Rancho Cordova, CA",
+    venue: "2729 Prospect Park Drive, Rancho Cordova, CA",
+    address: "2729 Prospect Park Drive, Rancho Cordova, CA",
     summary:
       "An evening of live music from Bad Cat, supporting veteran and homeless service organizations.",
     description: [
-      "Spend Veterans Day evening with us at the Village Green Amphitheater in Rancho Cordova for live music from Bad Cat.",
+      "Spend Veterans Day evening with us at 2729 Prospect Park Drive, Rancho Cordova, CA for live music from Bad Cat.",
       "Proceeds support organizations that serve veterans and people experiencing homelessness, the kind of work Debie championed throughout her life.",
     ],
     lineup: ["Bad Cat"],

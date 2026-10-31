@@ -117,7 +117,9 @@ function About({ event }: { event: FoundationEvent }) {
             term: "Address",
             value: event.address,
             href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              `${event.venue}, ${event.address}`,
+              event.venue && event.venue !== event.address
+                ? `${event.venue}, ${event.address}`
+                : event.address,
             )}`,
           },
         ]
