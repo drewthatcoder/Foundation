@@ -34,6 +34,8 @@ export function mailto(subject?: string) {
 export type FoundationEvent = {
   // Used in the page address, e.g. /events/veterans-day-concert
   slug: string;
+  /** Canva design the client maintains themselves (view?embed URL + share link). */
+  sponsorEmbed?: { src: string; href: string; title: string };
   title: string;
   kind: string;
   date: string;
@@ -54,6 +56,11 @@ export type FoundationEvent = {
 export const events: FoundationEvent[] = [
   {
     slug: "veterans-day-concert",
+    sponsorEmbed: {
+      src: "https://www.canva.com/design/DAHYkfl37oA/8yHNzPkfwlJJwZWVIkubyQ/view?embed",
+      href: "https://www.canva.com/design/DAHYkfl37oA/8yHNzPkfwlJJwZWVIkubyQ/view?utm_content=DAHYkfl37oA&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
+      title: "Veterans Day concert sponsors",
+    },
     title: "Veterans Day Benefit Concert",
     kind: "Benefit concert",
     date: "Wednesday, November 11, 2026",

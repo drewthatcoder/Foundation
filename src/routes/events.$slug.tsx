@@ -32,6 +32,7 @@ function EventPage() {
       <EventHero event={event} />
       <About event={event} />
       <Tickets event={event} />
+      <Sponsors event={event} />
       <Partners event={event} />
       <Help />
     </>
@@ -206,6 +207,59 @@ function Partners({ event }: { event: FoundationEvent }) {
               See sponsorship options <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Sponsors({ event }: { event: FoundationEvent }) {
+  const embed = event.sponsorEmbed;
+  if (!embed) return null;
+  return (
+    <section id="sponsors" className="scroll-mt-20 py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <h2 className="font-display text-3xl md:text-4xl">Our sponsors</h2>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          Thank you to the businesses and neighbors who make this night possible.
+        </p>
+        <div
+          className="mt-10 overflow-hidden rounded-md border border-border bg-card shadow-sm"
+          style={{ position: "relative", width: "100%", height: 0, paddingTop: "56.2225%" }}
+        >
+          <iframe
+            src={embed.src}
+            title={embed.title}
+            loading="lazy"
+            allow="fullscreen"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+              padding: 0,
+              margin: 0,
+            }}
+          />
+        </div>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-sm">
+          <a
+            href={embed.href}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-2 font-medium text-blue-deep hover:underline"
+          >
+            View the sponsor slides on Canva <ArrowRight className="h-4 w-4" />
+          </a>
+          <Link
+            to="/sponsors"
+            className="inline-flex items-center gap-2 font-medium text-blue-deep hover:underline"
+          >
+            Become a sponsor <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
